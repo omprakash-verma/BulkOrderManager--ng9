@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BulkOrderManager"
+    }
+  },
+  "defaultProject": "BulkOrderManager",
+  "cli": {
+    "analytics": false
+  }
 }

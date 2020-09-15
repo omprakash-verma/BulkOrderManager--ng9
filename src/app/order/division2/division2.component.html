@@ -1,1 +1,15 @@
-<p>division2 works!</p>
+<div class="container my-container">
+  <br />
+  <h6>Allocation Table</h6>
+  <div>
+    <ag-grid-angular
+      class="ag-theme-alpine my-grid"
+      [columnDefs]="columnDefs"
+      [rowData]="rowData | async"
+      [pagination]="true"
+      [paginationPageSize]="100"
+      rowSelection="multiple"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

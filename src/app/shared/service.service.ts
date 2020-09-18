@@ -20,6 +20,7 @@ export class ServiceService {
   JOB_ID: string;
   LOCATION_ID: string;
   STORE_ID: string;
+  myGrid;
 
   invokeDiv2ComponentFunction = new EventEmitter();
   subsVar: Subscription;

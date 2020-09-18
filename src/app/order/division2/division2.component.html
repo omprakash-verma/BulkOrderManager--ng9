@@ -12,6 +12,7 @@
       [paginationPageSize]="100"
       rowSelection="multiple"
       width="Auto"
+      (gridReady)="onGridReady($event)"
     >
     </ag-grid-angular>
   </div>

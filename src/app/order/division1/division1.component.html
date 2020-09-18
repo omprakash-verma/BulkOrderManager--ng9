@@ -1,4 +1,4 @@
-<form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+<form #form="ngForm" autocomplete="off">
   <div class="container">
     <div class="row">
       <div class="col">Order</div>
@@ -8,7 +8,6 @@
           name="SO_ID"
           [(ngModel)]="SO_ID"
           (change)="onOrderChange(SO_ID)"
-          (click)="onOrderClick()"
         >
           <option value="">Select</option>
           <option
@@ -104,7 +103,9 @@
       </div>
       <div class="col"></div>
       <div class="col">
-        <button type="submit " class="btn btn-primary">Display</button>
+        <button type="submit " class="btn btn-primary" (click)="onSubmit()">
+          Display
+        </button>
       </div>
       <div class="col">
         <button class="btn btn-primary" (click)="onProceed()">Proceed</button>

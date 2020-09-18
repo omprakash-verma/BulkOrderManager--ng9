@@ -149,9 +149,9 @@ export class Division2Component implements OnInit {
     }
 
     if (this.service.subsVar2 == undefined) {
-      this.service.subsVar = this.service.invokeDiv2ComponentFunction.subscribe(
-        (name: string) => {
-          this.getSelectedRows();
+      this.service.subsVar2 = this.service.invokeDiv2ComponentFunction2.subscribe(
+        () => {
+          this.getSelectedRows(this.service.myGrid);
         }
       );
     }
@@ -172,5 +172,15 @@ export class Division2Component implements OnInit {
     }
   }
 
-  getSelectedRows(myGrid) {}
+  getSelectedRows(myGrid) {
+    console.log('Hello');
+    let selectedNodes = myGrid.getSelectedNodes();
+    let selectedData = selectedNodes.map((node) => node.data);
+    alert(`Selected Nodes:\n${JSON.stringify(selectedData)}`);
+  }
+
+  onGridReady(myGrid) {
+    console.log('yo');
+    this.service.myGrid = myGrid.api;
+  }
 }

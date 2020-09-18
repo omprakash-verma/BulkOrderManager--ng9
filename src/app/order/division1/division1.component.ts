@@ -75,6 +75,7 @@ export class Division1Component implements OnInit {
   }
 
   onSubmit() {
+    console.log('Hello');
     this.service.SO_ID = this.SO_ID;
     this.service.ITEM_ID = this.ITEM_ID;
     this.service.JOB_ID = this.JOB_ID;

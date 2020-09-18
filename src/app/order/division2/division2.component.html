@@ -3,12 +3,15 @@
   <h6>Allocation Table</h6>
   <div>
     <ag-grid-angular
+      #myGrid
+      suppressHorizontalScroll="false"
       class="ag-theme-alpine my-grid"
       [columnDefs]="columnDefs"
-      [rowData]="rowData | async"
+      [rowData]="rowData"
       [pagination]="true"
       [paginationPageSize]="100"
       rowSelection="multiple"
+      width="Auto"
     >
     </ag-grid-angular>
   </div>

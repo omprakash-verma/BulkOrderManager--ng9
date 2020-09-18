@@ -13,9 +13,6 @@ export class Division2Component implements OnInit {
   constructor(private service: ServiceService) {}
   detailGet: Detailget[];
   detail: Detail;
-  ngOnInit(): void {
-    this.service.getDetail().then((res) => (this.rowData = res as Detailget[]));
-  }
 
   columnDefs = [
     {
@@ -23,71 +20,157 @@ export class Division2Component implements OnInit {
       field: 'jobId',
       sortable: true,
       filter: true,
-      checkboxSelection: true,
+      hide: true,
     },
-    { headerName: 'Job No', field: 'jobNo', sortable: true, filter: true },
-    { headerName: 'Item ID', field: 'itemId', sortable: true, filter: true },
+    {
+      headerName: 'Job No',
+      field: 'jobNo',
+      sortable: true,
+      filter: true,
+      checkboxSelection: true,
+      resizable: true,
+    },
+    {
+      headerName: 'Item ID',
+      field: 'itemId',
+      sortable: true,
+      filter: true,
+      hide: true,
+    },
 
     {
-      headerName: 'Item Name',
+      headerName: 'Item',
       field: 'itemName',
       sortable: true,
       filter: true,
+      resizable: true,
     },
 
-    { headerName: 'UOM', field: 'uomId', sortable: true, filter: true },
     {
-      headerName: 'Location',
-      field: 'location_name',
+      headerName: 'UOM',
+      field: 'uomId',
+      sortable: true,
+      filter: true,
+      hide: true,
+    },
+    {
+      headerName: 'UOM',
+      field: 'UOM',
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: 'storeId',
+      field: 'STORE_ID',
+      sortable: true,
+      filter: true,
+      hide: true,
+    },
+    {
+      headerName: 'Store',
+      field: 'STORE_NAME',
       sortable: true,
       filter: true,
     },
-    { headerName: 'STOCK', field: 'stock', sortable: true, filter: true },
+    {
+      headerName: 'Free Stock',
+      field: 'FREE_STOCK',
+      sortable: true,
+      filter: true,
+    },
     { headerName: 'Item Qty', field: 'itemQty', sortable: true, filter: true },
     {
-      headerName: 'ALLOCATED QTY',
+      headerName: 'Allocated Qty',
       field: 'allocatedQty',
       sortable: true,
       filter: true,
     },
 
     {
-      headerName: 'CONSUME QTY',
-      field: 'consumeQty',
+      headerName: 'Consume Qty',
+      field: 'consume_qty',
       sortable: true,
       filter: true,
+      resizable: true,
     },
     {
-      headerName: 'EXTRA_QTY',
+      headerName: 'Extra Qty',
       field: 'EXTRA_QTY',
       sortable: true,
       filter: true,
+      resizable: true,
     },
     {
-      headerName: 'TO_BE_ALLOCATED_QTY',
+      headerName: 'To Be Allocated Qty',
       field: 'to_be_allocated_qty',
       sortable: true,
       filter: true,
+      resizable: true,
     },
     {
       headerName: 'Allocate Qty',
       field: 'allocate_qty',
       sortable: true,
       filter: true,
+      resizable: true,
     },
     {
       headerName: 'Deallocate Qty',
       field: 'de_allocate_qty',
       sortable: true,
       filter: true,
+      resizable: true,
     },
     {
       headerName: 'Issue Qty',
       field: 'issue_qty',
       sortable: true,
       filter: true,
+      resizable: true,
     },
   ];
 
   rowData;
+
+  ngOnInit(): void {
+    if (this.service.subsVar == undefined) {
+      this.service.subsVar = this.service.invokeDiv2ComponentFunction.subscribe(
+        (name: string) => {
+          this.getGridData(
+            this.service.SO_ID,
+            this.service.ITEM_ID,
+            this.service.JOB_ID,
+            this.service.LOCATION_ID,
+            this.service.STORE_ID
+          );
+        }
+      );
+    }
+
+    if (this.service.subsVar2 == undefined) {
+      this.service.subsVar = this.service.invokeDiv2ComponentFunction.subscribe(
+        (name: string) => {
+          this.getSelectedRows();
+        }
+      );
+    }
+  }
+
+  async getGridData(SO_ID, ITEM_ID, JOB_ID, LOCATION_ID, STORE_ID) {
+    const data = await this.service.getGrid(
+      SO_ID,
+      ITEM_ID,
+      JOB_ID,
+      LOCATION_ID,
+      STORE_ID
+    );
+    if (data['result'] == 'no data') {
+      alert(data['usrMsg']);
+    } else {
+      this.rowData = data['result'];
+    }
+  }
+
+  getSelectedRows(myGrid) {}
 }

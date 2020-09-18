@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://192.168.1.97/api',
+  apiURL: 'https://localhost:44378/api/bulkAllocation/',
 };
 
 /*

@@ -3,31 +3,73 @@
     <div class="row">
       <div class="col">Order</div>
       <div class="col">
-        <select class="form-control" name="OrderID" ngModel>
-          <option>Select</option>
-          <option *ngFor="let order of orderList" value="{{ order.ORDER_ID }}">
-            {{ order.ORDER_NAME }}
+        <select
+          class="form-control"
+          name="SO_ID"
+          [(ngModel)]="SO_ID"
+          (change)="onOrderChange(SO_ID)"
+          (click)="onOrderClick()"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let order of this.orderList"
+            value="{{ order.SO_ID }}"
+          >
+            {{ order.ORDER_NO }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Item Group</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="ITEM_GROUP_ID"
+          [(ngModel)]="ITEM_GROUP_ID"
+          (change)="onItemGroupChange(ITEM_GROUP_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let itemgroup of this.itemGroupList"
+            value="{{ itemgroup.ID }}"
+          >
+            {{ itemgroup.ITEM_GROUP_NAME }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Summary Item</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="SUMMARY_ITEM_ID"
+          [(ngModel)]="SUMMARY_ITEM_ID"
+          (change)="onSummaryItemChange(SUMMARY_ITEM_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let summaryItem of this.summaryItemList"
+            value="{{ summaryItem.ITEM_ID }}"
+          >
+            {{ summaryItem.ITEM_NAME }}
           </option>
         </select>
       </div>
       <div class="col">Item</div>
-      <div class="col-4">
-        <select class="form-control" name="ItemID" ngModel>
-          <option value="0">Select</option>
-          <option *ngFor="let item of itemList" value="{{ item.ITEM_ID }}">
-            {{ item.ITEM_Name }}
+      <div class="col">
+        <select class="form-control" name="ITEM_ID" [(ngModel)]="ITEM_ID">
+          <option value="">Select</option>
+          <option *ngFor="let item of this.itemList" value="{{ item.ITEM_ID }}">
+            {{ item.ITEM_NAME }}
           </option>
         </select>
       </div>
-      <div class="col"></div>
     </div>
     <div class="row">
       <div class="col">Job No.</div>
       <div class="col">
-        <select class="form-control" name="JobID" ngModel>
-          <option value="0">Select</option>
-          <option *ngFor="let job of jobList" value="{{ job.JOB_ID }}">
-            {{ job.JOB_NO }}
+        <select class="form-control" name="JOB_ID" [(ngModel)]="JOB_ID">
+          <option value="">Select</option>
+          <option *ngFor="let job of this.jobList" value="{{ job.jobId }}">
+            {{ job.jobNo }}
           </option>
         </select>
       </div>
@@ -35,18 +77,25 @@
       <div class="col">
         <select class="form-control">
           <option value="0">Select</option>
-          <option>option 1</option>
-          <option>option 2</option>
+          <option
+            *ngFor="let location of this.locationList"
+            value="{{ location.LOCATION_ID }}"
+          >
+            {{ location.LOCATION_NAME }}
+          </option>
         </select>
       </div>
       <div class="col">Store</div>
       <div class="col">
         <select class="form-control">
-          <option value="0">Select</option>
-          <option>option 1</option>
-          <option>option 2</option>
+          <option value="">Select</option>
+          <option *ngFor="let store of storeList" value="{{ store.STORE_ID }}">
+            {{ store.STORE_NAME }}
+          </option>
         </select>
       </div>
+      <div class="col"></div>
+      <div class="col"></div>
     </div>
     <div class="row">
       <div class="col">Include Shipped Orders</div>
@@ -57,7 +106,9 @@
       <div class="col">
         <button type="submit " class="btn btn-primary">Display</button>
       </div>
-      <div class="col"><button class="btn btn-primary">Proceed</button></div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="onProceed()">Proceed</button>
+      </div>
       <div class="col"></div>
     </div>
   </div>

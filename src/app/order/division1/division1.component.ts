@@ -51,31 +51,31 @@ export class Division1Component implements OnInit {
     this.service
       .getJobOnOrder(SO_ID)
       .then((data) => (this.jobList = data['job']));
+    // this.service
+    //   .getItemOnOrder(SO_ID)
+    //   .then((data) => (this.itemList = data['result']));
+  }
+
+  onItemGroupChange(SO_ID, ITEM_GROUP_ID) {
     this.service
-      .getItemOnOrder(SO_ID)
-      .then((data) => (this.itemList = data['result']));
+      .getSummaryItemOnItemGroup(SO_ID, ITEM_GROUP_ID)
+      .then((data) => (this.summaryItemList = data['SummaryList']));
   }
 
-  onItemGroupChange(ITEM_GROUP_ID) {
-    if (ITEM_GROUP_ID == '') {
-      this.initialData();
-    } else {
-      this.orderList = null;
-      this.service
-        .getSummaryItemOnItemGroup(ITEM_GROUP_ID)
-        .then((data) => (this.summaryItemList = data['SummaryList']));
-    }
-  }
-
-  onSummaryItemChange(SUMMARY_ITEM_ID) {
+  onSummaryItemChange(SO_ID, SUMMARY_ITEM_ID) {
     console.log(SUMMARY_ITEM_ID);
     this.service
-      .getItemOnSummaryItem(SUMMARY_ITEM_ID)
+      .getItemOnSummaryItem(SO_ID, SUMMARY_ITEM_ID)
       .then((data) => (this.itemList = data['result']));
+  }
+
+  onLocationChange(LOCATION_ID) {
+    this.service
+      .getStoreOnLoc(LOCATION_ID)
+      .then((data) => (this.storeList = data['result']));
   }
 
   onSubmit() {
-    console.log('Hello');
     this.service.SO_ID = this.SO_ID;
     this.service.ITEM_ID = this.ITEM_ID;
     this.service.JOB_ID = this.JOB_ID;

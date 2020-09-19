@@ -24,7 +24,7 @@
           class="form-control"
           name="ITEM_GROUP_ID"
           [(ngModel)]="ITEM_GROUP_ID"
-          (change)="onItemGroupChange(ITEM_GROUP_ID)"
+          (change)="onItemGroupChange(this.SO_ID, ITEM_GROUP_ID)"
         >
           <option value="">Select</option>
           <option
@@ -41,7 +41,7 @@
           class="form-control"
           name="SUMMARY_ITEM_ID"
           [(ngModel)]="SUMMARY_ITEM_ID"
-          (change)="onSummaryItemChange(SUMMARY_ITEM_ID)"
+          (change)="onSummaryItemChange(this.SO_ID, SUMMARY_ITEM_ID)"
         >
           <option value="">Select</option>
           <option
@@ -74,8 +74,13 @@
       </div>
       <div class="col">Location</div>
       <div class="col">
-        <select class="form-control">
-          <option value="0">Select</option>
+        <select
+          class="form-control"
+          name="LOCATION_ID"
+          [(ngModel)]="LOCATION_ID"
+          (change)="onLocationChange(LOCATION_ID)"
+        >
+          <option value="">Select</option>
           <option
             *ngFor="let location of this.locationList"
             value="{{ location.LOCATION_ID }}"
@@ -86,7 +91,7 @@
       </div>
       <div class="col">Store</div>
       <div class="col">
-        <select class="form-control">
+        <select class="form-control" name="STORE_ID" [(ngModel)]="STORE_ID">
           <option value="">Select</option>
           <option *ngFor="let store of storeList" value="{{ store.STORE_ID }}">
             {{ store.STORE_NAME }}

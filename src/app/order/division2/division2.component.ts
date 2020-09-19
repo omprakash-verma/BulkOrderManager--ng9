@@ -114,6 +114,7 @@ export class Division2Component implements OnInit {
       sortable: true,
       filter: true,
       resizable: true,
+      editable: true,
     },
     {
       headerName: 'Deallocate Qty',
@@ -121,6 +122,7 @@ export class Division2Component implements OnInit {
       sortable: true,
       filter: true,
       resizable: true,
+      editable: true,
     },
     {
       headerName: 'Issue Qty',
@@ -176,6 +178,7 @@ export class Division2Component implements OnInit {
     console.log('Hello');
     let selectedNodes = myGrid.getSelectedNodes();
     let selectedData = selectedNodes.map((node) => node.data);
+    console.log(selectedData);
     alert(`Selected Nodes:\n${JSON.stringify(selectedData)}`);
   }
 

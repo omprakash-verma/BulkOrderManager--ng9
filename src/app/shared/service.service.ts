@@ -53,30 +53,42 @@ export class ServiceService {
       .toPromise();
   }
 
-  getItemOnOrder(SO_ID) {
+  // getItemOnOrder(SO_ID) {
+  //   return this.http
+  //     .post(environment.apiURL + 'GetDropDownValue', {
+  //       p_controltype: 'item',
+  //       p_orderID: SO_ID,
+
+  //     })
+  //     .toPromise();
+  // }
+
+  getSummaryItemOnItemGroup(SO_ID, ITEM_GROUP_ID) {
     return this.http
       .post(environment.apiURL + 'GetDropDownValue', {
-        p_controltype: 'item',
+        p_controltype: 'SUMMARY_ITEM',
+        p_itemgrptypeID: ITEM_GROUP_ID,
         p_orderID: SO_ID,
       })
       .toPromise();
   }
 
-  getSummaryItemOnItemGroup(ITEM_GROUP_ID) {
-    return this.http
-      .post(environment.apiURL + 'GetDropDownValue', {
-        p_controltype: 'SUMMARY_ITEM',
-        p_itemgrptypeID: ITEM_GROUP_ID,
-      })
-      .toPromise();
-  }
-
-  getItemOnSummaryItem(SUMMARY_ITEM_ID) {
+  getItemOnSummaryItem(SO_ID, SUMMARY_ITEM_ID) {
     console.log(SUMMARY_ITEM_ID);
     return this.http
       .post(environment.apiURL + 'GetDropDownValue', {
         p_controltype: 'ITEM',
         p_summary_itemID: SUMMARY_ITEM_ID,
+        p_orderID: SO_ID,
+      })
+      .toPromise();
+  }
+
+  getStoreOnLoc(LOCATION_ID) {
+    return this.http
+      .post(environment.apiURL + 'GetDropDownValue', {
+        p_controltype: 'STORE',
+        p_locationID: LOCATION_ID,
       })
       .toPromise();
   }

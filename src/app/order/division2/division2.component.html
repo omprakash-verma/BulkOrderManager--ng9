@@ -1,1 +1,19 @@
-<p>division2 works!</p>
+<div class="container my-container">
+  <br />
+  <h6>Allocation Table</h6>
+  <div>
+    <ag-grid-angular
+      #myGrid
+      suppressHorizontalScroll="false"
+      class="ag-theme-alpine my-grid"
+      [columnDefs]="columnDefs"
+      [rowData]="rowData"
+      [pagination]="true"
+      [paginationPageSize]="100"
+      rowSelection="multiple"
+      width="Auto"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

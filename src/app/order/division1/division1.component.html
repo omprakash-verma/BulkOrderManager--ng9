@@ -1,1 +1,121 @@
-<p>division1 works!</p>
+<form #form="ngForm" autocomplete="off">
+  <div class="container">
+    <div class="row">
+      <div class="col">Order</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="SO_ID"
+          [(ngModel)]="SO_ID"
+          (change)="onOrderChange(SO_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let order of this.orderList"
+            value="{{ order.SO_ID }}"
+          >
+            {{ order.ORDER_NO }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Item Group</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="ITEM_GROUP_ID"
+          [(ngModel)]="ITEM_GROUP_ID"
+          (change)="onItemGroupChange(this.SO_ID, ITEM_GROUP_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let itemgroup of this.itemGroupList"
+            value="{{ itemgroup.ID }}"
+          >
+            {{ itemgroup.ITEM_GROUP_NAME }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Summary Item</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="SUMMARY_ITEM_ID"
+          [(ngModel)]="SUMMARY_ITEM_ID"
+          (change)="onSummaryItemChange(this.SO_ID, SUMMARY_ITEM_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let summaryItem of this.summaryItemList"
+            value="{{ summaryItem.ITEM_ID }}"
+          >
+            {{ summaryItem.ITEM_NAME }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Item</div>
+      <div class="col">
+        <select class="form-control" name="ITEM_ID" [(ngModel)]="ITEM_ID">
+          <option value="">Select</option>
+          <option *ngFor="let item of this.itemList" value="{{ item.ITEM_ID }}">
+            {{ item.ITEM_NAME }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">Job No.</div>
+      <div class="col">
+        <select class="form-control" name="JOB_ID" [(ngModel)]="JOB_ID">
+          <option value="">Select</option>
+          <option *ngFor="let job of this.jobList" value="{{ job.jobId }}">
+            {{ job.jobNo }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Location</div>
+      <div class="col">
+        <select
+          class="form-control"
+          name="LOCATION_ID"
+          [(ngModel)]="LOCATION_ID"
+          (change)="onLocationChange(LOCATION_ID)"
+        >
+          <option value="">Select</option>
+          <option
+            *ngFor="let location of this.locationList"
+            value="{{ location.LOCATION_ID }}"
+          >
+            {{ location.LOCATION_NAME }}
+          </option>
+        </select>
+      </div>
+      <div class="col">Store</div>
+      <div class="col">
+        <select class="form-control" name="STORE_ID" [(ngModel)]="STORE_ID">
+          <option value="">Select</option>
+          <option *ngFor="let store of storeList" value="{{ store.STORE_ID }}">
+            {{ store.STORE_NAME }}
+          </option>
+        </select>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col">Include Shipped Orders</div>
+      <div class="col">
+        <input type="checkbox" />
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <button type="submit " class="btn btn-primary" (click)="onSubmit()">
+          Display
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="onProceed()">Proceed</button>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</form>

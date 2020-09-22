@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styles: [],
+  styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
 }
